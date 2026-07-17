@@ -24,43 +24,42 @@ type UserID int64
 
 // IntToInt64 явно преобразует int в int64.
 //
-// TODO: выполните явное преобразование типа.
+// TODO: верните то же числовое значение с типом int64.
 func IntToInt64(n int) int64 {
 	return int64(n)
 }
 
 // Int64ToInt явно преобразует int64 в int.
 //
-// TODO: выполните явное преобразование типа.
-// Для этой учебной задачи переполнение не обрабатываем.
+// TODO: верните то же числовое значение с типом int. Переполнение в этой учебной задаче не обрабатывается.
 func Int64ToInt(n int64) int {
 	return int(n)
 }
 
 // RubToKop переводит рубли в копейки.
 //
-// TODO: переведите значение из рублей в копейки и сохраните тип результата.
+// TODO: верните количество копеек типа Kop, считая один рубль равным 100 копейкам. Знак исходного значения сохраняется.
 func RubToKop(rub Rub) Kop {
 	return Kop(rub * 100)
 }
 
 // KopToRub переводит копейки в рубли через целочисленное деление.
 //
-// TODO: переведите значение из копеек в рубли и сохраните тип результата.
+// TODO: верните целое количество рублей типа Rub. Неполные рубли должны отбрасываться по правилам целочисленного деления.
 func KopToRub(kop Kop) Rub {
 	return Rub(kop / 100)
 }
 
 // UserIDToString преобразует UserID в string.
 //
-// TODO: преобразуйте пользовательский идентификатор в строку.
+// TODO: верните десятичную строку со значением id, включая нулевые и отрицательные значения.
 func UserIDToString(id UserID) string {
 	return strconv.FormatInt(int64(id), 10)
 }
 
 // ParseInt преобразует строку в int.
 //
-// TODO: распарсите строку как int и корректно верните ошибку.
+// TODO: преобразуйте text в int. Для корректной строки верните число и nil, для пустой или некорректной — ошибку.
 func ParseInt(text string) (int, error) {
 	text = strings.TrimSpace(text) //добавление комментария для проверки тестов
 	num, err := strconv.Atoi(text)
@@ -72,7 +71,7 @@ func ParseInt(text string) (int, error) {
 
 // ParseAndDouble парсит строку в int и умножает результат на 2.
 //
-// TODO: распарсите строку, обработайте ошибку и верните удвоенное число.
+// TODO: преобразуйте text в int и верните удвоенное значение. Если строку нельзя распарсить, верните ошибку.
 func ParseAndDouble(text string) (int, error) {
 	text = strings.TrimSpace(text)
 	num, err := strconv.Atoi(text)
@@ -84,21 +83,21 @@ func ParseAndDouble(text string) (int, error) {
 
 // IntToString преобразует int в string.
 //
-// TODO: преобразуйте целое число в строку.
+// TODO: верните десятичное строковое представление n.
 func IntToString(n int) string {
 	return strconv.Itoa(n)
 }
 
 // FloatToString форматирует float64 с двумя знаками после точки.
 //
-// TODO: преобразуйте дробное число в строку с фиксированным количеством знаков после точки.
+// TODO: верните строку ровно с двумя знаками после точки и округлением, например 12.345 -> "12.35".
 func FloatToString(value float64) string {
 	return strconv.FormatFloat(value, 'f', 2, 64)
 }
 
 // ParseBoolText преобразует строку в bool.
 //
-// TODO: распарсите строковое bool-значение и корректно верните ошибку.
+// TODO: преобразуйте стандартные строки "true", "false", "1" и "0" в bool. Для неподдерживаемого значения верните ошибку.
 func ParseBoolText(text string) (bool, error) {
 	text = strings.TrimSpace(text)
 	b, err := strconv.ParseBool(text)
@@ -110,21 +109,21 @@ func ParseBoolText(text string) (bool, error) {
 
 // BoolToText преобразует bool в string.
 //
-// TODO: преобразуйте bool в его строковое представление.
+// TODO: верните строку "true" для true и "false" для false.
 func BoolToText(value bool) string {
 	return strconv.FormatBool(value)
 }
 
 // SumIntAndInt64 складывает int и int64.
 //
-// TODO: сложите значения разных целочисленных типов через явное преобразование.
+// TODO: верните сумму a и b с типом int64, сохранив знаки обоих значений.
 func SumIntAndInt64(a int, b int64) int64 {
 	return int64(a) + b
 }
 
 // PriceRubStringToKop преобразует строку с рублями в копейки.
 //
-// TODO: распарсите цену в рублях, проверьте корректность и верните цену в копейках.
+// TODO: распарсите text как целое количество рублей и верните цену типа Kop. Для отрицательной или некорректной цены верните ошибку.
 func PriceRubStringToKop(text string) (Kop, error) {
 	text = strings.TrimSpace(text)
 	num, err := strconv.Atoi(text)
@@ -140,7 +139,7 @@ func PriceRubStringToKop(text string) (Kop, error) {
 
 // SafeParsePositive безопасно парсит положительное число.
 //
-// TODO: верните положительное число из строки или 0 при некорректном значении.
+// TODO: верните распарсенное положительное целое число. Для нуля, отрицательного числа, пустой или некорректной строки верните 0.
 func SafeParsePositive(text string) int {
 	text = strings.TrimSpace(text)
 	num, err := strconv.Atoi(text)
@@ -152,7 +151,7 @@ func SafeParsePositive(text string) int {
 
 // FormatUser форматирует пользователя в строку.
 //
-// TODO: соберите строковое представление пользователя по формату из тестов.
+// TODO: верните строку формата "user:<id>:<name>". Например, id=1001 и name="Maria" дают "user:1001:Maria"; пустое имя допустимо.
 func FormatUser(id UserID, name string) string {
 	return "user:" + strconv.FormatInt(int64(id), 10) + ":" + name
 }

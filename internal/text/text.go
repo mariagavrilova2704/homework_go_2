@@ -8,21 +8,21 @@ import "strings"
 
 // ByteLen возвращает длину строки в байтах.
 //
-// TODO: посчитайте размер строки в байтах.
+// TODO: верните размер s в байтах. Для Unicode-строк количество байт может быть больше количества символов.
 func ByteLen(s string) int {
 	return len(s)
 }
 
 // RuneLen возвращает количество Unicode-символов в строке.
 //
-// TODO: посчитайте количество rune в строке.
+// TODO: верните количество Unicode-символов в s. Кириллица и emoji должны считаться как отдельные символы.
 func RuneLen(s string) int {
 	return len([]rune(s))
 }
 
 // FirstRune возвращает первый Unicode-символ строки.
 //
-// TODO: безопасно верните первый символ строки с учётом Unicode.
+// TODO: верните первый Unicode-символ s как строку. Для пустой строки верните "".
 func FirstRune(s string) string {
 	if len(s) == 0 {
 		return ""
@@ -33,7 +33,7 @@ func FirstRune(s string) string {
 
 // LastRune возвращает последний Unicode-символ строки.
 //
-// TODO: безопасно верните последний символ строки с учётом Unicode.
+// TODO: верните последний Unicode-символ s как строку. Для пустой строки верните "".
 func LastRune(s string) string {
 	if len(s) == 0 {
 		return ""
@@ -44,35 +44,35 @@ func LastRune(s string) string {
 
 // Trim убирает пробелы по краям строки.
 //
-// TODO: очистите строку от внешних пробельных символов.
+// TODO: верните s без пробельных символов по краям. Внутреннее содержимое строки не изменяйте.
 func Trim(s string) string {
 	return strings.TrimSpace(s)
 }
 
 // ToLower переводит строку в нижний регистр.
 //
-// TODO: приведите строку к нижнему регистру.
+// TODO: верните s в нижнем регистре с корректной обработкой латиницы и кириллицы.
 func ToLower(s string) string {
 	return strings.ToLower(s)
 }
 
 // ToUpper переводит строку в верхний регистр.
 //
-// TODO: приведите строку к верхнему регистру.
+// TODO: верните s в верхнем регистре с корректной обработкой латиницы и кириллицы.
 func ToUpper(s string) string {
 	return strings.ToUpper(s)
 }
 
 // NormalizeEmail нормализует email.
 //
-// TODO: очистите email от внешних пробелов и приведите к единому регистру.
+// TODO: удалите пробельные символы по краям email и приведите всю строку к нижнему регистру.
 func NormalizeEmail(email string) string {
 	return strings.ToLower(strings.TrimSpace(email))
 }
 
 // ContainsWord проверяет, содержит ли text подстроку word.
 //
-// TODO: проверьте наличие word внутри text.
+// TODO: верните true, если word встречается внутри text. Поиск чувствителен к регистру; пустая строка word считается найденной.
 func ContainsWord(text, word string) bool {
 	if strings.Contains(text, word) {
 		return true
@@ -82,8 +82,7 @@ func ContainsWord(text, word string) bool {
 
 // ReplaceFirstRune заменяет первый Unicode-символ строки.
 //
-// TODO: верните новую строку, где первый символ заменён на r.
-// Пустая строка должна обрабатываться безопасно.
+// TODO: верните новую строку, заменив первый Unicode-символ s на r. Для пустой строки верните "".
 func ReplaceFirstRune(s string, r rune) string {
 	s = strings.TrimSpace(s)
 	if s == "" {
@@ -96,7 +95,7 @@ func ReplaceFirstRune(s string, r rune) string {
 
 // ReverseRunes разворачивает строку по Unicode-символам.
 //
-// TODO: разверните строку без поломки Unicode-символов.
+// TODO: верните s в обратном порядке по Unicode-символам. Кириллица и emoji не должны повреждаться.
 func ReverseRunes(s string) string {
 	r := []rune(s)
 	for i, j := 0, len(r)-1; i < j; i, j = i+1, j-1 {
@@ -107,8 +106,7 @@ func ReverseRunes(s string) string {
 
 // Initials возвращает инициалы имени и фамилии.
 //
-// TODO: соберите инициалы из имени и фамилии.
-// Пробелы по краям не должны влиять на результат.
+// TODO: очистите имя и фамилию по краям, возьмите первые Unicode-символы непустых частей, переведите их в верхний регистр и соедините без разделителя.
 func Initials(firstName, lastName string) string {
 	firstName = strings.ToUpper(strings.TrimSpace(firstName))
 	lastName = strings.ToUpper(strings.TrimSpace(lastName))
@@ -131,8 +129,7 @@ func Initials(firstName, lastName string) string {
 
 // RepeatWord повторяет слово count раз.
 //
-// TODO: повторите слово нужное количество раз.
-// Неположительное количество повторений должно давать пустую строку.
+// TODO: верните word, повторённое count раз без разделителя. При count <= 0 верните "".
 func RepeatWord(word string, count int) string {
 	if count <= 0 {
 		return ""
@@ -142,15 +139,14 @@ func RepeatWord(word string, count int) string {
 
 // JoinWithComma объединяет строки через запятую.
 //
-// TODO: объедините элементы с разделителем-запятой.
+// TODO: соедините элементы values через запятую без дополнительных пробелов. Для пустого или nil-среза верните "".
 func JoinWithComma(values []string) string {
 	return strings.Join(values, ",")
 }
 
 // IsPalindrome проверяет, является ли строка палиндромом.
 //
-// TODO: сравните строку с её развёрнутой версией.
-// Регистр и пробелы не должны мешать проверке.
+// TODO: верните true, если s читается одинаково в обоих направлениях после удаления пробелов и приведения к одному регистру. Поддержите Unicode.
 func IsPalindrome(s string) bool {
 	s = strings.ToLower(strings.ReplaceAll(s, " ", ""))
 	r := []rune(s)

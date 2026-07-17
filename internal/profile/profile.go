@@ -7,9 +7,7 @@ package profile
 
 // BuildUserCard собирает карточку пользователя.
 //
-// TODO: нормализуйте имя, определите возрастную группу и статус активности.
-// Пустое после очистки имя должно заменяться значением по умолчанию.
-// Точный формат итоговой строки смотрите в тестах.
+// TODO: верните строку "name=<name> age=<age> group=<group> status=<status>". Имя очистите по краям, приведите к нижнему регистру и сделайте первый символ заглавным; пустое имя замените на "Unknown". Возраст от 18 — adult, иначе minor; active=true — active, иначе inactive.
 func BuildUserCard(name string, age int, active bool) string {
 	return ""
 }

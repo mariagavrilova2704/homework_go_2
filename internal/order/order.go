@@ -7,7 +7,7 @@ package order
 
 // Статусы заказа.
 //
-// TODO: связанные статусы должны иметь последовательные значения.
+// TODO: задайте StatusNew=0, StatusPaid=1 и StatusCanceled=2 как последовательные значения в указанном порядке.
 const (
 	StatusNew = iota
 	StatusPaid
@@ -16,9 +16,7 @@ const (
 
 // OrderSummary собирает краткое описание заказа.
 //
-// TODO: преобразуйте статус в текст, bool-флаг оплаты — в текстовое состояние,
-// цену в рублях — в копейки, затем соберите итоговую строку.
-// Неизвестный статус и некорректная цена должны обрабатываться безопасно.
+// TODO: верните строку "status=<status_text> payment=<payment_text> price_kop=<price>". Статусы: new, paid, canceled, неизвестный — unknown; paid=true даёт paid, иначе not_paid; отрицательную цену считайте 0, остальные рубли переведите в копейки.
 func OrderSummary(status int, priceRub int, paid bool) string {
 	return ""
 }

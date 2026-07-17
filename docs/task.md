@@ -1,36 +1,49 @@
-# Задание 2: переменные, типы, память
+# Задание 2: переменные, типы и память
 
-Нужно реализовать функции с `TODO` внутри `internal/*`.
+## Цель
 
-Для каждой темы есть:
+Закрепить базовые типы Go, арифметику, логические выражения, строки и Unicode, константы, преобразования типов, обработку ошибок и указатели.
 
-- `cmd/<topic>/main.go` — только вызывает `Example()`;
-- `internal/<topic>/example.go` — собирает демонстрационный вывод;
-- `internal/<topic>/<topic>.go` — функции, которые нужно реализовать;
+В проекте каждая тема разделена на три части:
+
+- `internal/<topic>/<topic>.go` — функции-заготовки с `TODO`, которые нужно реализовать;
 - `internal/<topic>/<topic>_test.go` — unit-тесты;
-- `test/integration/homework_test.go` — проверка вывода программ.
+- `cmd/<topic>/main.go` — запуск демонстрационного примера через `Example()`.
+
+Логику нужно писать только в файлах `internal/<topic>/<topic>.go`. Изменять сигнатуры функций, готовые тесты и `main.go` не нужно.
+
+## Как выполнять
+
+1. Выберите один раздел и прочитайте таблицу с требованиями.
+2. Откройте указанный файл в `internal`.
+3. Реализуйте все функции с `TODO` в этом файле.
+4. Запустите unit-тесты раздела.
+5. Запустите пример и проверьте итоговый вывод.
+6. После выполнения всех разделов запустите `make ci`.
+
+---
 
 ~~## 01. Integer~~
 
 Файл: `internal/integer/integer.go`
 
-Реализовать минимум 15 задач:
-
-1. `Add` — сложение двух `int`.
-2. `Subtract` — вычитание.
-3. `Multiply` — умножение.
-4. `Divide` — целочисленное деление.
-5. `Remainder` — остаток от деления.
-6. `IsEven` — проверка чётности.
-7. `LastDigit` — последняя цифра числа, включая отрицательные числа.
-8. `Max` — большее из двух чисел.
-9. `Min` — меньшее из двух чисел.
-10. `Clamp` — ограничить значение диапазоном.
-11. `SumThree` — сумма трёх чисел.
-12. `Average` — среднее через целочисленное деление.
-13. `IntToInt64` — явное преобразование `int` в `int64`.
-14. `NonNegativeToUint` — отрицательные числа превращать в `0`, остальные — в `uint`.
-15. `CountPages` — количество страниц для `totalItems` и `pageSize`.
+| Функция | Ввод | Вывод и правила |
+|---|---|---|
+| `Add` | `a`, `b` — два `int` | Сумма `a` и `b`. |
+| `Subtract` | `a`, `b` — два `int` | Разность: из `a` вычитается `b`. |
+| `Multiply` | `a`, `b` — два `int` | Произведение `a` и `b`. |
+| `Divide` | `a` — делимое, `b` — делитель | Результат целочисленного деления. При `b == 0` вернуть `0`. |
+| `Remainder` | `a` — делимое, `b` — делитель | Остаток от целочисленного деления. При `b == 0` вернуть `0`; для отрицательных значений сохранить стандартное поведение Go. |
+| `IsEven` | `n` — `int` | `true`, если число чётное, иначе `false`. Ноль считается чётным. |
+| `LastDigit` | `n` — `int` | Последняя десятичная цифра числа как неотрицательное значение от `0` до `9`. Например, для `-987` вернуть `7`. |
+| `Max` | `a`, `b` — два `int` | Большее значение; при равенстве вернуть это же значение. |
+| `Min` | `a`, `b` — два `int` | Меньшее значение; при равенстве вернуть это же значение. |
+| `Clamp` | `value`, `min`, `max` | Если `value < min`, вернуть `min`; если `value > max`, вернуть `max`; иначе вернуть `value`. Считайте, что `min <= max`. |
+| `SumThree` | `a`, `b`, `c` — три `int` | Сумма трёх значений. |
+| `Average` | `a`, `b` — два `int` | Среднее арифметическое с целочисленным результатом; дробная часть отбрасывается по правилам Go. |
+| `IntToInt64` | `n` — `int` | То же числовое значение типа `int64`. |
+| `NonNegativeToUint` | `n` — `int` | Для `n >= 0` вернуть значение типа `uint`; для отрицательного `n` вернуть `0`. |
+| `CountPages` | `totalItems` — число элементов, `pageSize` — размер страницы | Количество страниц с округлением вверх. При `totalItems <= 0` или `pageSize <= 0` вернуть `0`. |
 
 Проверка:
 
@@ -43,21 +56,23 @@ make run-integer
 
 Файл: `internal/basesbytes/basesbytes.go`
 
-1. `Decimal42`
-2. `Hex2A`
-3. `Binary101010`
-4. `Octal52`
-5. `SameNumber`
-6. `MaxByte`
-7. `FormatDecimal`
-8. `FormatBinary`
-9. `FormatOctal`
-10. `FormatHex`
-11. `FormatAllBases`
-12. `IsASCII`
-13. `ToUpperASCII`
-14. `ToLowerASCII`
-15. `PackTwoBytes`
+| Функция | Ввод | Вывод и правила |
+|---|---|---|
+| `Decimal42` | Нет | Число `42`, записанное десятичным литералом. |
+| `Hex2A` | Нет | Число `42`, записанное шестнадцатеричным литералом. |
+| `Binary101010` | Нет | Число `42`, записанное двоичным литералом. |
+| `Octal52` | Нет | Число `42`, записанное восьмеричным литералом. |
+| `SameNumber` | Нет | `true`, если значения четырёх функций выше равны между собой и равны `42`. |
+| `MaxByte` | Нет | Максимальное значение типа `byte`: `255`. |
+| `FormatDecimal` | `n` — `uint64` | Десятичная запись числа без префикса, например `42` → `"42"`. |
+| `FormatBinary` | `n` — `uint64` | Двоичная запись без префикса, например `42` → `"101010"`. |
+| `FormatOctal` | `n` — `uint64` | Восьмеричная запись без префикса, например `42` → `"52"`. |
+| `FormatHex` | `n` — `uint64` | Шестнадцатеричная запись без префикса и с буквами в нижнем регистре, например `42` → `"2a"`. |
+| `FormatAllBases` | `n` — `uint64` | Строка формата `dec=<decimal> bin=<binary> oct=<octal> hex=<hex>`. Для `42`: `dec=42 bin=101010 oct=52 hex=2a`. |
+| `IsASCII` | `b` — `byte` | `true` для значений от `0` до `127` включительно, иначе `false`. |
+| `ToUpperASCII` | `b` — `byte` | Строчную латинскую ASCII-букву `a-z` заменить на соответствующую `A-Z`; остальные значения вернуть без изменений. |
+| `ToLowerASCII` | `b` — `byte` | Заглавную латинскую ASCII-букву `A-Z` заменить на соответствующую `a-z`; остальные значения вернуть без изменений. |
+| `PackTwoBytes` | `high`, `low` — два `byte` | Значение `uint16`, в котором `high` занимает старшие 8 бит, а `low` — младшие 8 бит. Например, `(1, 2)` → `258`. |
 
 Проверка:
 
@@ -70,21 +85,23 @@ make run-bases
 
 Файл: `internal/float/float.go`
 
-1. `Add`
-2. `Subtract`
-3. `Multiply`
-4. `Divide`
-5. `DiscountPrice`
-6. `AddTax`
-7. `CelsiusToFahrenheit`
-8. `FahrenheitToCelsius`
-9. `Average`
-10. `Round2`
-11. `FormatPrice`
-12. `PercentOf`
-13. `GrowthPercent`
-14. `IsPositive`
-15. `FloatToInt`
+| Функция | Ввод | Вывод и правила |
+|---|---|---|
+| `Add` | `a`, `b` — два `float64` | Сумма значений. |
+| `Subtract` | `a`, `b` — два `float64` | Разность: из `a` вычитается `b`. |
+| `Multiply` | `a`, `b` — два `float64` | Произведение значений. |
+| `Divide` | `a` — делимое, `b` — делитель | Результат дробного деления. При `b == 0` вернуть `0`. |
+| `DiscountPrice` | `price` — цена, `percent` — скидка в процентах | Цена после скидки. Отрицательная скидка не изменяет цену; скидка `100%` и выше даёт цену `0`. |
+| `AddTax` | `price` — цена, `taxPercent` — налог в процентах | Цена после добавления налога. Отрицательный налог не изменяет цену. |
+| `CelsiusToFahrenheit` | Температура в °C | Температура в °F по стандартному соотношению шкал. Контрольные точки: `0°C` → `32°F`, `100°C` → `212°F`. |
+| `FahrenheitToCelsius` | Температура в °F | Температура в °C. Контрольные точки: `32°F` → `0°C`, `212°F` → `100°C`. |
+| `Average` | `a`, `b` — два `float64` | Среднее арифметическое двух значений. |
+| `Round2` | `value` — `float64` | Число, округлённое до двух знаков после десятичной точки. Например, `12.345` → `12.35`. |
+| `FormatPrice` | `price` — `float64` | Строка ровно с двумя знаками после точки: `12.3` → `"12.30"`, `100` → `"100.00"`. |
+| `PercentOf` | `total`, `percent` | Указанный процент от `total`; отрицательный процент даёт отрицательный результат. |
+| `GrowthPercent` | `oldValue`, `newValue` | Процентное изменение от старого значения к новому. Уменьшение даёт отрицательный результат; при `oldValue == 0` вернуть `0`. |
+| `IsPositive` | `value` — `float64` | `true` только для значения строго больше нуля. |
+| `FloatToInt` | `value` — `float64` | Значение типа `int`; дробная часть отбрасывается в сторону нуля. Например, `-12.99` → `-12`. |
 
 Проверка:
 
@@ -97,21 +114,23 @@ make run-float
 
 Файл: `internal/boolean/boolean.go`
 
-1. `CanEnter`
-2. `IsAdult`
-3. `CanBuyAlcohol`
-4. `CanRest`
-5. `IsWorkingDay`
-6. `HasAccess`
-7. `CanApplyDiscount`
-8. `ShouldNotify`
-9. `IsValidScore`
-10. `IsInRange`
-11. `IsLeapYear`
-12. `CanWithdraw`
-13. `LoginAllowed`
-14. `IsEmpty`
-15. `Not`
+| Функция | Ввод | Вывод и правила |
+|---|---|---|
+| `CanEnter` | `age`, `hasTicket` | `true`, только если возраст не меньше `18` и билет есть. |
+| `IsAdult` | `age` | `true` при `age >= 18`, иначе `false`. |
+| `CanBuyAlcohol` | `age` | В рамках задания покупка разрешена при `age >= 18`. |
+| `CanRest` | `isWeekend`, `isHoliday` | `true`, если установлен хотя бы один из флагов. |
+| `IsWorkingDay` | `day` — строка на английском в нижнем регистре | `true` для `monday`, `tuesday`, `wednesday`, `thursday`, `friday`; для `saturday`, `sunday` и неизвестных значений — `false`. |
+| `HasAccess` | `isAdmin`, `isOwner` | `true`, если пользователь администратор или владелец. |
+| `CanApplyDiscount` | `isVIP`, `total` | `true`, если пользователь VIP или сумма заказа не меньше `5000`. |
+| `ShouldNotify` | `emailVerified`, `notificationsEnabled` | `true`, только если email подтверждён и уведомления включены. |
+| `IsValidScore` | `score` | `true` для диапазона от `0` до `100` включительно. |
+| `IsInRange` | `value`, `min`, `max` | `true`, если `value` находится в диапазоне `[min, max]`, включая обе границы. |
+| `IsLeapYear` | `year` | Результат по календарному правилу: год кратен `400` либо кратен `4`, но не кратен `100`. |
+| `CanWithdraw` | `balance`, `amount`, `blocked` | `true`, если аккаунт не заблокирован, `amount > 0` и суммы на балансе достаточно. |
+| `LoginAllowed` | `passwordOK`, `otpOK` | `true`, только если успешно пройдены обе проверки. |
+| `IsEmpty` | `text` | `true` только для строки длиной `0`; строка из пробелов или перевода строки не считается пустой. |
+| `Not` | `flag` | Противоположное логическое значение. |
 
 Проверка:
 
@@ -124,21 +143,23 @@ make run-boolean
 
 Файл: `internal/text/text.go`
 
-1. `ByteLen`
-2. `RuneLen`
-3. `FirstRune`
-4. `LastRune`
-5. `Trim`
-6. `ToLower`
-7. `ToUpper`
-8. `NormalizeEmail`
-9. `ContainsWord`
-10. `ReplaceFirstRune`
-11. `ReverseRunes`
-12. `Initials`
-13. `RepeatWord`
-14. `JoinWithComma`
-15. `IsPalindrome`
+| Функция | Ввод | Вывод и правила |
+|---|---|---|
+| `ByteLen` | `s` — строка | Размер строки в байтах. Например, `"Привет"` занимает `12` байт. |
+| `RuneLen` | `s` — строка | Количество Unicode-символов. Например, в `"Привет"` — `6` символов. |
+| `FirstRune` | `s` — строка | Первый Unicode-символ как строка; для пустой строки вернуть `""`. |
+| `LastRune` | `s` — строка | Последний Unicode-символ как строка; для пустой строки вернуть `""`. |
+| `Trim` | `s` — строка | Строка без пробельных символов по краям; внутренние символы не изменяются. |
+| `ToLower` | `s` — строка | Строка в нижнем регистре с поддержкой Unicode. |
+| `ToUpper` | `s` — строка | Строка в верхнем регистре с поддержкой Unicode. |
+| `NormalizeEmail` | `email` — строка | Удалить пробельные символы по краям и привести всю строку к нижнему регистру. |
+| `ContainsWord` | `text`, `word` | `true`, если `word` встречается внутри `text`. Поиск чувствителен к регистру; пустая подстрока считается найденной. |
+| `ReplaceFirstRune` | `s` — строка, `r` — новая `rune` | Новая строка с заменённым первым Unicode-символом; для пустой строки вернуть `""`. |
+| `ReverseRunes` | `s` — строка | Строка, развёрнутая по Unicode-символам без повреждения кириллицы и emoji. |
+| `Initials` | `firstName`, `lastName` | Первые Unicode-символы очищенных имён в верхнем регистре, без разделителя. Пустая часть пропускается: `("", "Ivanova")` → `"I"`. |
+| `RepeatWord` | `word`, `count` | `word`, повторённое `count` раз без разделителя; при `count <= 0` вернуть `""`. |
+| `JoinWithComma` | `values` — `[]string` | Все элементы в исходном порядке через `,` без дополнительных пробелов; пустой или `nil`-срез даёт `""`. |
+| `IsPalindrome` | `s` — строка | Сравнить строку без учёта регистра и пробелов. Кириллица должна поддерживаться; строка только из пробелов считается палиндромом. |
 
 Проверка:
 
@@ -151,21 +172,36 @@ make run-text
 
 Файл: `internal/constants/constants.go`
 
-1. `AppName`
-2. `MaxAttempts`
-3. `StatusText`
-4. `IsFinalStatus`
-5. `NextStatus`
-6. `RoleText`
-7. `CanEdit`
-8. `HTTPStatusText`
-9. `DayType`
-10. `PriorityText`
-11. `IsKnownStatus`
-12. `PaymentStateText`
-13. `TrafficLightAction`
-14. `GradeText`
-15. `EventTypeText`
+### Константы
+
+| Константы | Требование |
+|---|---|
+| `appName` | Значение `"go-homework-2"`. |
+| `maxAttempts` | Значение `3`. |
+| `StatusNew`, `StatusPaid`, `StatusCanceled` | Последовательные значения `0`, `1`, `2`. |
+| `RoleGuest`, `RoleUser`, `RoleAdmin` | Последовательные значения `0`, `1`, `2`. |
+| `PriorityLow`, `PriorityMedium`, `PriorityHigh` | Последовательные значения `1`, `2`, `3`; значение `0` считается неизвестным. |
+| `EventCreated`, `EventUpdated`, `EventDeleted` | Три различных последовательных значения в указанном порядке. |
+
+### Функции
+
+| Функция | Ввод | Вывод и правила |
+|---|---|---|
+| `AppName` | Нет | Значение константы `appName`. |
+| `MaxAttempts` | Нет | Значение константы `maxAttempts`. |
+| `StatusText` | `status` | `new`, `paid`, `canceled`; для неизвестного значения — `unknown`. |
+| `IsFinalStatus` | `status` | `true` для `StatusPaid` и `StatusCanceled`; для нового и неизвестного статуса — `false`. |
+| `NextStatus` | `status` | Новый статус переходит в оплаченный; оплаченный и отменённый не меняются; неизвестный превращается в `StatusNew`. |
+| `RoleText` | `role` | `guest`, `user`, `admin`; для неизвестного значения — `unknown`. |
+| `CanEdit` | `role` | `true` только для `RoleAdmin`. |
+| `HTTPStatusText` | HTTP-код | `200` → `OK`, `201` → `Created`, `400` → `Bad Request`, `404` → `Not Found`; остальные → `Unknown`. |
+| `DayType` | Номер дня: `1` — понедельник, `7` — воскресенье | `working` для `1...5`, `weekend` для `6...7`, иначе `unknown`. |
+| `PriorityText` | `priority` | `low`, `medium`, `high`; для неизвестного значения — `unknown`. |
+| `IsKnownStatus` | `status` | `true` только для трёх объявленных статусов. |
+| `PaymentStateText` | `paid`, `canceled` | `canceled`, если отмена установлена; иначе `paid`, если оплата установлена; иначе `pending`. |
+| `TrafficLightAction` | `color` | `red` → `stop`, `yellow` → `wait`, `green` → `go`; иначе `unknown`. |
+| `GradeText` | `score` | Вне `0...100` → `invalid`; `90...100` → `excellent`; `75...89` → `good`; `50...74` → `passed`; `0...49` → `retry`. |
+| `EventTypeText` | `eventType` | `created`, `updated`, `deleted`; для неизвестного значения — `unknown`. |
 
 Проверка:
 
@@ -178,21 +214,23 @@ make run-constants
 
 Файл: `internal/conversion/conversion.go`
 
-1. `IntToInt64`
-2. `Int64ToInt`
-3. `RubToKop`
-4. `KopToRub`
-5. `UserIDToString`
-6. `ParseInt`
-7. `ParseAndDouble`
-8. `IntToString`
-9. `FloatToString`
-10. `ParseBoolText`
-11. `BoolToText`
-12. `SumIntAndInt64`
-13. `PriceRubStringToKop`
-14. `SafeParsePositive`
-15. `FormatUser`
+| Функция | Ввод | Вывод и правила |
+|---|---|---|
+| `IntToInt64` | `n` — `int` | То же числовое значение типа `int64`. |
+| `Int64ToInt` | `n` — `int64` | То же числовое значение типа `int`; переполнение в этой задаче не обрабатывается. |
+| `RubToKop` | `rub` — `Rub` | Количество копеек типа `Kop`; один рубль равен `100` копейкам. Отрицательные значения сохраняют знак. |
+| `KopToRub` | `kop` — `Kop` | Целое количество рублей типа `Rub`; неполные рубли отбрасываются. |
+| `UserIDToString` | `id` — `UserID` | Десятичная строка с идентификатором. |
+| `ParseInt` | `text` — строка | Успешно распарсенное `int` и `nil`; для пустой или некорректной строки — ненулевая ошибка. |
+| `ParseAndDouble` | `text` — строка | Распарсенное число, умноженное на `2`; ошибку парсинга нужно вернуть вызывающему коду. |
+| `IntToString` | `n` — `int` | Десятичная строка со значением. |
+| `FloatToString` | `value` — `float64` | Строка ровно с двумя знаками после точки и округлением: `12.345` → `"12.35"`. |
+| `ParseBoolText` | `text` — строка | Поддержать стандартные значения `"true"`, `"false"`, `"1"`, `"0"`; для неподдерживаемой строки вернуть ошибку. |
+| `BoolToText` | `value` — `bool` | `"true"` или `"false"`. |
+| `SumIntAndInt64` | `a` — `int`, `b` — `int64` | Сумма типа `int64`. |
+| `PriceRubStringToKop` | Строка с целым числом рублей | Для неотрицательного числа вернуть цену типа `Kop`; некорректная или отрицательная цена должна вернуть ошибку. |
+| `SafeParsePositive` | `text` — строка | Положительное целое число; для нуля, отрицательного числа, пустой или некорректной строки вернуть `0`. |
+| `FormatUser` | `id` — `UserID`, `name` — строка | Строка формата `user:<id>:<name>`, например `user:1001:Maria`. Пустое имя допустимо. |
 
 Проверка:
 
@@ -201,25 +239,29 @@ make test-conversion
 make run-conversion
 ```
 
+---
+
 ## 08. Pointers
 
 Файл: `internal/pointers/pointers.go`
 
-1. `ValueOrDefault`
-2. `Increment`
-3. `SetValue`
-4. `Swap`
-5. `ResetToZero`
-6. `AddToValue`
-7. `MaxPointer`
-8. `IsNil`
-9. `CopyValue`
-10. `DoubleInPlace`
-11. `NewInt`
-12. `DivideInto`
-13. `ApplyDiscountInPlace`
-14. `ChoosePointer`
-15. `PointToLarger`
+| Функция | Ввод | Вывод и правила |
+|---|---|---|
+| `ValueOrDefault` | `p` — `*int`, `def` — значение по умолчанию | Значение по адресу; если `p == nil`, вернуть `def`. Нулевое значение по ненулевому указателю не заменяется. |
+| `Increment` | `p` — `*int` | Увеличить исходное значение на `1` и вернуть новый результат; при `nil` вернуть `0`. |
+| `SetValue` | `p` — `*int`, `value` | Записать новое значение и вернуть `true`; при `nil` вернуть `false`. |
+| `Swap` | `a`, `b` — два `*int` | Поменять значения местами и вернуть `true`; если хотя бы один указатель `nil`, ничего не менять и вернуть `false`. |
+| `ResetToZero` | `p` — `*int` | Записать `0` и вернуть `true`; при `nil` вернуть `false`. |
+| `AddToValue` | `p` — `*int`, `delta` | Прибавить `delta` к исходному значению и вернуть результат; при `nil` вернуть `0`. |
+| `MaxPointer` | `a`, `b` — два `*int` | Указатель на большее значение; при равенстве — `a`; если один указатель `nil`, вернуть второй; если оба `nil`, вернуть `nil`. |
+| `IsNil` | `p` — `*int` | `true`, если указатель равен `nil`. |
+| `CopyValue` | `p` — `*int` | Копия значения; при `nil` вернуть `0`. Изменять исходное значение не нужно. |
+| `DoubleInPlace` | `p` — `*int` | Умножить исходное значение на `2` и вернуть `true`; при `nil` вернуть `false`. |
+| `NewInt` | `value` — `int` | Ненулевой указатель на новое значение, равное `value`. |
+| `DivideInto` | `out` — `*int`, `a`, `b` | Записать в `out` результат целочисленного деления и вернуть `true`. При `out == nil` или `b == 0` вернуть `false`; существующее значение `out` не менять. |
+| `ApplyDiscountInPlace` | `price` — `*int`, `percent` | Применить целочисленную скидку и вернуть `true`. При `percent >= 100` записать `0`; при отрицательном проценте или `nil` вернуть `false` и не менять цену. |
+| `ChoosePointer` | `primary`, `fallback` | Вернуть `primary`, если он не `nil`; иначе вернуть `fallback`. Значение по адресу, включая `0`, не влияет на выбор. |
+| `PointToLarger` | `a`, `b` — два `*int` | Те же правила выбора, что у `MaxPointer`: большее значение, при равенстве первый указатель, безопасная обработка `nil`. |
 
 Проверка:
 
@@ -228,13 +270,25 @@ make test-pointers
 make run-pointers
 ```
 
-## 09–11. Объединяющие задачи
+---
 
-### Calculator
+## 09. Calculator
 
 Файл: `internal/calculator/calculator.go`
 
-`Calculate(a, b int, operation string) (int, error)` должен поддерживать операции `+`, `-`, `*`, `/`, `%`.
+| Функция | Ввод | Вывод и правила |
+|---|---|---|
+| `Calculate` | `a`, `b` — `int`; `operation` — одна из строк `+`, `-`, `*`, `/`, `%` | Вернуть результат выбранной операции и `nil`. Деление выполняется как целочисленное. Для `/` или `%` при `b == 0`, а также для неизвестной или пустой операции вернуть ошибку. |
+
+Примеры:
+
+| Ввод | Вывод |
+|---|---|
+| `Calculate(10, 5, "+")` | `15, nil` |
+| `Calculate(17, 5, "/")` | `3, nil` |
+| `Calculate(17, 5, "%")` | `2, nil` |
+| `Calculate(1, 0, "/")` | Ошибка |
+| `Calculate(1, 2, "add")` | Ошибка |
 
 Проверка:
 
@@ -243,11 +297,23 @@ make test-calculator
 make run-calculator
 ```
 
-### Profile
+---
+
+## 10. Profile
 
 Файл: `internal/profile/profile.go`
 
-`BuildUserCard(name string, age int, active bool) string` объединяет строки, числа, bool и условия.
+| Функция | Ввод | Вывод и правила |
+|---|---|---|
+| `BuildUserCard` | `name` — строка, `age` — `int`, `active` — `bool` | Вернуть строку `name=<name> age=<age> group=<group> status=<status>`. Имя очистить по краям, привести к нижнему регистру и сделать первый символ заглавным; пустое имя заменить на `Unknown`. `group=adult` при `age >= 18`, иначе `group=minor`. `status=active` при `active == true`, иначе `status=inactive`. |
+
+Примеры:
+
+| Ввод | Вывод |
+|---|---|
+| `BuildUserCard("  MARIA  ", 20, true)` | `name=Maria age=20 group=adult status=active` |
+| `BuildUserCard("ivan", 17, false)` | `name=Ivan age=17 group=minor status=inactive` |
+| `BuildUserCard("   ", 30, false)` | `name=Unknown age=30 group=adult status=inactive` |
 
 Проверка:
 
@@ -256,11 +322,27 @@ make test-profile
 make run-profile
 ```
 
-### Order
+---
+
+## 11. Order
 
 Файл: `internal/order/order.go`
 
-`OrderSummary(status int, priceRub int, paid bool) string` объединяет `const/iota`, `switch`, `int`, `bool` и преобразование рублей в копейки.
+### Константы статусов
+
+`StatusNew`, `StatusPaid`, `StatusCanceled` должны иметь последовательные значения `0`, `1`, `2` в указанном порядке.
+
+| Функция | Ввод | Вывод и правила |
+|---|---|---|
+| `OrderSummary` | `status` — статус заказа, `priceRub` — цена в целых рублях, `paid` — флаг оплаты | Вернуть строку `status=<status_text> payment=<payment_text> price_kop=<price>`. Статусы: `new`, `paid`, `canceled`, неизвестный → `unknown`. Оплата: `paid` при `true`, иначе `not_paid`. Цену перевести в копейки; отрицательную цену считать равной `0`. |
+
+Примеры:
+
+| Ввод | Вывод |
+|---|---|
+| `OrderSummary(StatusPaid, 1200, true)` | `status=paid payment=paid price_kop=120000` |
+| `OrderSummary(StatusNew, 500, false)` | `status=new payment=not_paid price_kop=50000` |
+| `OrderSummary(99, -100, false)` | `status=unknown payment=not_paid price_kop=0` |
 
 Проверка:
 
@@ -269,8 +351,14 @@ make test-order
 make run-order
 ```
 
+---
+
 ## Финальная проверка
+
+После реализации всех задач выполните:
 
 ```bash
 make ci
 ```
+
+Работа считается завершённой, когда проходят unit-тесты, integration-тесты, форматирование, `go vet`, проверка покрытия и сборка всех программ.

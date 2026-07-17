@@ -15,21 +15,21 @@ import (
 
 // Decimal42 возвращает число 42 в десятичной записи.
 //
-// TODO: задайте число обычной десятичной записью.
+// TODO: верните число 42, записав его обычным десятичным литералом.
 func Decimal42() int {
 	return 42
 }
 
 // Hex2A возвращает число 42 в шестнадцатеричной записи.
 //
-// TODO: задайте то же число через hex-литерал.
+// TODO: верните число 42, записав его шестнадцатеричным литералом.
 func Hex2A() int {
 	return 0x2A
 }
 
 // Binary101010 возвращает число 42 в двоичной записи.
 //
-// TODO: задайте то же число через binary-литерал.
+// TODO: верните число 42, записав его двоичным литералом.
 func Binary101010() int {
 
 	return 0b101010
@@ -37,14 +37,14 @@ func Binary101010() int {
 
 // Octal52 возвращает число 42 в восьмеричной записи.
 //
-// TODO: задайте то же число через octal-литерал.
+// TODO: верните число 42, записав его восьмеричным литералом.
 func Octal52() int {
 	return 052
 }
 
 // SameNumber проверяет, что 42 можно записать разными способами.
 //
-// TODO: сравните значения из функций выше и убедитесь, что это одно число.
+// TODO: верните true, только если Decimal42, Hex2A, Binary101010 и Octal52 возвращают одно и то же значение 42.
 func SameNumber() bool {
 	if Decimal42() == Hex2A() && Decimal42() == Binary101010() && Decimal42() == Octal52() && Hex2A() == Binary101010() && Hex2A() == Octal52() && Binary101010() == Octal52() {
 		return true
@@ -54,50 +54,49 @@ func SameNumber() bool {
 
 // MaxByte возвращает максимальное значение byte.
 //
-// TODO: верните верхнюю границу диапазона byte.
+// TODO: верните максимальное значение типа byte — 255.
 func MaxByte() byte {
 	return math.MaxUint8
 }
 
 // FormatDecimal форматирует число в десятичной системе.
 //
-// TODO: преобразуйте число в строку в десятичном формате.
+// TODO: верните десятичную запись n без префикса, например 42 должно стать строкой "42".
 func FormatDecimal(n uint64) string {
 	return strconv.FormatUint(n, 10)
 }
 
 // FormatBinary форматирует число в двоичной системе.
 //
-// TODO: преобразуйте число в строку в двоичном формате.
+// TODO: верните двоичную запись n без префикса, например 42 должно стать строкой "101010".
 func FormatBinary(n uint64) string {
 	return strconv.FormatUint(n, 2)
 }
 
 // FormatOctal форматирует число в восьмеричной системе.
 //
-// TODO: преобразуйте число в строку в восьмеричном формате.
+// TODO: верните восьмеричную запись n без префикса, например 42 должно стать строкой "52".
 func FormatOctal(n uint64) string {
 	return strconv.FormatUint(n, 8)
 }
 
 // FormatHex форматирует число в шестнадцатеричной системе.
 //
-// TODO: преобразуйте число в строку в hex-формате с маленькими буквами.
+// TODO: верните шестнадцатеричную запись n без префикса и с буквами в нижнем регистре, например 42 должно стать строкой "2a".
 func FormatHex(n uint64) string {
 	return strconv.FormatUint(n, 16)
 }
 
 // FormatAllBases выводит одно число в разных системах счисления.
 //
-// TODO: соберите строку с decimal, binary, octal и hex представлениями числа.
-// Точный формат результата смотрите в тестах.
+// TODO: верните строку формата "dec=<decimal> bin=<binary> oct=<octal> hex=<hex>". Для n=42 результат: "dec=42 bin=101010 oct=52 hex=2a".
 func FormatAllBases(n uint64) string {
 	return fmt.Sprintf("dec=%d bin=%b oct=%o hex=%x", n, n, n, n)
 }
 
 // IsASCII проверяет, входит ли byte в ASCII-диапазон.
 //
-// TODO: определите, относится ли значение byte к ASCII.
+// TODO: верните true для значений от 0 до 127 включительно; для остальных значений byte верните false.
 func IsASCII(b byte) bool {
 	if b <= 127 {
 		return true
@@ -107,7 +106,7 @@ func IsASCII(b byte) bool {
 
 // ToUpperASCII переводит маленькую ASCII-букву в большую.
 //
-// TODO: изменяйте только маленькие латинские буквы, остальные byte возвращайте без изменений.
+// TODO: если b содержит строчную латинскую ASCII-букву a-z, верните соответствующую A-Z. Любое другое значение верните без изменений.
 func ToUpperASCII(b byte) byte {
 	if b >= 'a' && b <= 'z' {
 		return b - 32
@@ -117,7 +116,7 @@ func ToUpperASCII(b byte) byte {
 
 // ToLowerASCII переводит большую ASCII-букву в маленькую.
 //
-// TODO: изменяйте только большие латинские буквы, остальные byte возвращайте без изменений.
+// TODO: если b содержит заглавную латинскую ASCII-букву A-Z, верните соответствующую a-z. Любое другое значение верните без изменений.
 func ToLowerASCII(b byte) byte {
 	if b >= 'A' && b <= 'Z' {
 		return b + 32
@@ -127,7 +126,7 @@ func ToLowerASCII(b byte) byte {
 
 // PackTwoBytes объединяет два byte в одно uint16.
 //
-// TODO: соберите uint16 из старшего и младшего байта.
+// TODO: верните uint16, в котором high занимает старшие 8 бит, а low — младшие. Например, high=1 и low=2 должны дать 258.
 func PackTwoBytes(high, low byte) uint16 {
 	return uint16(high)<<8 | uint16(low)
 }
