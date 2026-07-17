@@ -11,6 +11,8 @@ import (
 // strconv, парсинг строк, форматирование значений
 // и обработку ошибок при преобразовании.
 
+// добавление комментария для проверки тестов на гитхаб
+// проверка 2
 // Rub — пользовательский тип для рублей.
 type Rub int
 
@@ -60,7 +62,7 @@ func UserIDToString(id UserID) string {
 //
 // TODO: распарсите строку как int и корректно верните ошибку.
 func ParseInt(text string) (int, error) {
-	text = strings.TrimSpace(text)
+	text = strings.TrimSpace(text) //добавление комментария для проверки тестов
 	num, err := strconv.Atoi(text)
 	if err != nil {
 		return 0, err
