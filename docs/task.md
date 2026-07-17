@@ -10,7 +10,7 @@
 - `internal/<topic>/<topic>_test.go` — unit-тесты;
 - `test/integration/homework_test.go` — проверка вывода программ.
 
-## 01. Integer
+~~## 01. Integer~~
 
 Файл: `internal/integer/integer.go`
 
@@ -39,7 +39,7 @@ make test-integer
 make run-integer
 ```
 
-## 02. Bases / Byte
+~~## 02. Bases / Byte~~
 
 Файл: `internal/basesbytes/basesbytes.go`
 
@@ -66,7 +66,7 @@ make test-bases
 make run-bases
 ```
 
-## 03. Float
+~~## 03. Float~~
 
 Файл: `internal/float/float.go`
 
@@ -93,7 +93,7 @@ make test-float
 make run-float
 ```
 
-## 04. Boolean
+~~## 04. Boolean~~
 
 Файл: `internal/boolean/boolean.go`
 
@@ -120,7 +120,7 @@ make test-boolean
 make run-boolean
 ```
 
-## 05. Text
+~~## 05. Text~~
 
 Файл: `internal/text/text.go`
 
@@ -147,7 +147,7 @@ make test-text
 make run-text
 ```
 
-## 06. Constants / iota / switch
+~~## 06. Constants / iota / switch~~
 
 Файл: `internal/constants/constants.go`
 
@@ -174,7 +174,7 @@ make test-constants
 make run-constants
 ```
 
-## 07. Conversion / named types / strconv
+~~## 07. Conversion / named types / strconv~~
 
 Файл: `internal/conversion/conversion.go`
 

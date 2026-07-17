@@ -11,21 +11,21 @@ package integer
 //
 // TODO: реализуйте сложение двух входных значений.
 func Add(a, b int) int {
-	return 0
+	return a + b
 }
 
 // Subtract вычитает второе число из первого.
 //
 // TODO: реализуйте вычитание значения b из значения a.
 func Subtract(a, b int) int {
-	return 0
+	return a - b
 }
 
 // Multiply умножает два целых числа.
 //
 // TODO: реализуйте умножение двух входных значений.
 func Multiply(a, b int) int {
-	return 0
+	return a * b
 }
 
 // Divide делит первое число на второе через целочисленное деление.
@@ -33,7 +33,10 @@ func Multiply(a, b int) int {
 // TODO: реализуйте безопасное целочисленное деление.
 // При невозможности деления функция должна вернуть 0.
 func Divide(a, b int) int {
-	return 0
+	if b == 0 {
+		return 0
+	}
+	return a / b
 }
 
 // Remainder возвращает остаток от деления первого числа на второе.
@@ -42,13 +45,19 @@ func Divide(a, b int) int {
 // При невозможности деления функция должна вернуть 0.
 // Для отрицательных чисел сохраните стандартное поведение Go.
 func Remainder(a, b int) int {
-	return 0
+	if b == 0 {
+		return 0
+	}
+	return a % b
 }
 
 // IsEven проверяет, является ли число чётным.
 //
 // TODO: определите чётность числа через остаток от деления.
 func IsEven(n int) bool {
+	if n%2 == 0 {
+		return true
+	}
 	return false
 }
 
@@ -57,21 +66,30 @@ func IsEven(n int) bool {
 // TODO: верните последнюю цифру числа.
 // Для отрицательных чисел результат должен быть положительным.
 func LastDigit(n int) int {
-	return 0
+	if n < 0 {
+		return n % 10 * -1
+	}
+	return n % 10
 }
 
 // Max возвращает большее из двух чисел.
 //
 // TODO: выберите большее из двух входных значений.
 func Max(a, b int) int {
-	return 0
+	if a > b {
+		return a
+	}
+	return b
 }
 
 // Min возвращает меньшее из двух чисел.
 //
 // TODO: выберите меньшее из двух входных значений.
 func Min(a, b int) int {
-	return 0
+	if a < b {
+		return a
+	}
+	return b
 }
 
 // Clamp ограничивает значение диапазоном [min, max].
@@ -79,35 +97,44 @@ func Min(a, b int) int {
 // TODO: верните значение, приведённое к границам диапазона.
 // Значение ниже диапазона должно стать нижней границей, выше диапазона — верхней.
 func Clamp(value, min, max int) int {
-	return 0
+	if value < min {
+		return min
+	}
+	if value > max {
+		return max
+	}
+	return value
 }
 
 // SumThree складывает три целых числа.
 //
 // TODO: реализуйте сумму трёх входных значений.
 func SumThree(a, b, c int) int {
-	return 0
+	return a + b + c
 }
 
 // Average возвращает среднее арифметическое двух целых чисел.
 //
 // TODO: посчитайте среднее значение через целочисленную арифметику.
 func Average(a, b int) int {
-	return 0
+	return (a + b) / 2
 }
 
 // IntToInt64 явно преобразует int в int64.
 //
 // TODO: выполните явное преобразование типа.
 func IntToInt64(n int) int64 {
-	return 0
+	return int64(n)
 }
 
 // NonNegativeToUint преобразует неотрицательное int-число в uint.
 //
 // TODO: отрицательные значения должны давать 0, остальные нужно преобразовать в uint.
 func NonNegativeToUint(n int) uint {
-	return 0
+	if n < 0 {
+		return 0
+	}
+	return uint(n)
 }
 
 // CountPages считает количество страниц для списка элементов.
@@ -115,5 +142,8 @@ func NonNegativeToUint(n int) uint {
 // TODO: посчитайте количество страниц с округлением вверх.
 // Некорректные входные значения должны давать 0.
 func CountPages(totalItems, pageSize int) int {
-	return 0
+	if totalItems == 0 || pageSize == 0 {
+		return 0
+	}
+	return (totalItems + pageSize - 1) / pageSize
 }
