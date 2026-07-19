@@ -241,7 +241,7 @@ make run-conversion
 
 ---
 
-## 08. Pointers
+~~## 08. Pointers~~
 
 Файл: `internal/pointers/pointers.go`
 
@@ -272,7 +272,7 @@ make run-pointers
 
 ---
 
-## 09. Calculator
+~~## 09. Calculator~~
 
 Файл: `internal/calculator/calculator.go`
 
@@ -299,7 +299,7 @@ make run-calculator
 
 ---
 
-## 10. Profile
+~~## 10. Profile~~
 
 Файл: `internal/profile/profile.go`
 
@@ -324,7 +324,7 @@ make run-profile
 
 ---
 
-## 11. Order
+~~## 11. Order~~
 
 Файл: `internal/order/order.go`
 

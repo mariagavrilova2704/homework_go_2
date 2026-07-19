@@ -133,7 +133,7 @@ func NonNegativeToUint(n int) uint {
 //
 // TODO: верните количество страниц для totalItems элементов по pageSize элементов на странице, округляя вверх. При totalItems <= 0 или pageSize <= 0 верните 0.
 func CountPages(totalItems, pageSize int) int {
-	if totalItems == 0 || pageSize == 0 {
+	if totalItems <= 0 || pageSize <= 0 {
 		return 0
 	}
 	return (totalItems + pageSize - 1) / pageSize

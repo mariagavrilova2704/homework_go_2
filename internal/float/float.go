@@ -44,8 +44,11 @@ func Divide(a, b float64) float64 {
 //
 // TODO: верните цену после применения percent процентов скидки. Отрицательный percent не меняет цену, а percent >= 100 даёт результат 0.
 func DiscountPrice(price, percent float64) float64 {
-	if percent <= 0 || (price*percent/100) > price {
+	if price < 0 || percent < 0 {
 		return price
+	}
+	if percent >= 100 {
+		return 0
 	}
 	return price - (price * percent / 100)
 }
