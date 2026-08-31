@@ -8,55 +8,93 @@ package pointers
 //
 // TODO: если p не nil, верните значение по адресу, даже если оно равно 0. Если p nil, верните def.
 func ValueOrDefault(p *int, def int) int {
-	return 0
+	if p == nil {
+		return def
+	}
+	return *p
 }
 
 // Increment увеличивает значение по указателю на 1.
 //
 // TODO: если p не nil, увеличьте исходное значение на 1 и верните новый результат. Для nil верните 0.
 func Increment(p *int) int {
-	return 0
+	if p == nil {
+		return 0
+	}
+	*p = *p + 1
+	return *p
 }
 
 // SetValue записывает новое значение по указателю.
 //
 // TODO: если p не nil, запишите value по адресу и верните true. Для nil верните false.
 func SetValue(p *int, value int) bool {
-	return false
+	if p == nil {
+		return false
+	}
+	*p = value
+	return true
 }
 
 // Swap меняет местами два значения по указателям.
 //
 // TODO: если оба указателя не nil, поменяйте значения местами и верните true. Иначе ничего не изменяйте и верните false.
 func Swap(a, b *int) bool {
-	return false
+	if a == nil || b == nil {
+		return false
+	}
+	*a, *b = *b, *a
+	return true
 }
 
 // ResetToZero сбрасывает значение по указателю в 0.
 //
 // TODO: если p не nil, запишите по адресу 0 и верните true. Для nil верните false.
 func ResetToZero(p *int) bool {
-	return false
+	if p == nil {
+		return false
+	}
+	*p = 0
+	return true
 }
 
 // AddToValue прибавляет delta к значению по указателю.
 //
 // TODO: если p не nil, прибавьте delta к исходному значению и верните результат. Для nil верните 0.
 func AddToValue(p *int, delta int) int {
-	return 0
+	if p == nil {
+		return 0
+	}
+	*p = *p + delta
+	return *p
 }
 
 // MaxPointer возвращает указатель на большее значение.
 //
 // TODO: верните указатель на большее значение; при равенстве верните a. Если один указатель nil, верните другой; если оба nil — nil.
 func MaxPointer(a, b *int) *int {
-	return nil
+	if a == nil && b == nil {
+		return nil
+	}
+	if a == nil {
+		return b
+	}
+	if b == nil {
+		return a
+	}
+	if *a >= *b {
+		return a
+	}
+	return b
 }
 
 // IsNil проверяет, равен ли указатель nil.
 //
 // TODO: верните true только для nil-указателя.
 func IsNil(p *int) bool {
+	if p == nil {
+		return true
+	}
 	return false
 }
 
@@ -64,47 +102,82 @@ func IsNil(p *int) bool {
 //
 // TODO: верните копию значения по адресу, не изменяя исходную переменную. Для nil верните 0.
 func CopyValue(p *int) int {
-	return 0
+	if p == nil {
+		return 0
+	}
+	return *p
 }
 
 // DoubleInPlace умножает значение по указателю на 2.
 //
 // TODO: если p не nil, умножьте исходное значение на 2 и верните true. Для nil верните false.
 func DoubleInPlace(p *int) bool {
-	return false
+	if p == nil {
+		return false
+	}
+	*p = *p * 2
+	return true
 }
 
 // NewInt создаёт новое int-значение и возвращает указатель на него.
 //
 // TODO: создайте новое int-значение, равное value, и верните ненулевой указатель на него.
 func NewInt(value int) *int {
-	return nil
+	valueNew := value
+	return &valueNew
 }
 
 // DivideInto делит a на b и записывает результат в out.
 //
 // TODO: если out не nil и b не равен 0, запишите в out результат целочисленного деления a на b и верните true. При ошибке верните false и не меняйте out.
 func DivideInto(out *int, a, b int) bool {
-	return false
+	if out == nil || b == 0 {
+		return false
+	}
+	*out = a / b
+	return true
 }
 
 // ApplyDiscountInPlace применяет скидку к цене по указателю.
 //
 // TODO: если price не nil и percent >= 0, примените целочисленную скидку и верните true; percent >= 100 должен дать цену 0. Для nil или отрицательного процента верните false и не меняйте цену.
 func ApplyDiscountInPlace(price *int, percent int) bool {
-	return false
+	if price == nil || percent < 0 {
+		return false
+	}
+	if percent >= 100 {
+		*price = 0
+		return true
+	}
+	*price = *price - (*price*percent)/100
+	return true
 }
 
 // ChoosePointer выбирает первый доступный указатель.
 //
 // TODO: верните primary, если он не nil; иначе верните fallback. Значение по адресу, включая 0, не влияет на выбор.
 func ChoosePointer(primary, fallback *int) *int {
-	return nil
+	if primary == nil {
+		return fallback
+	}
+	return primary
 }
 
 // PointToLarger возвращает указатель на большее значение.
 //
 // TODO: верните указатель на большее значение; при равенстве верните a. Если один указатель nil, верните другой; если оба nil — nil.
 func PointToLarger(a, b *int) *int {
-	return nil
+	if a == nil && b == nil {
+		return nil
+	}
+	if a == nil {
+		return b
+	}
+	if b == nil {
+		return a
+	}
+	if *a >= *b {
+		return a
+	}
+	return b
 }

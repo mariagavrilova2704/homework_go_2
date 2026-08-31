@@ -8,6 +8,9 @@ package boolean
 //
 // TODO: верните true, только если age не меньше 18 и hasTicket равен true.
 func CanEnter(age int, hasTicket bool) bool {
+	if age >= 18 && hasTicket {
+		return true
+	}
 	return false
 }
 
@@ -15,6 +18,9 @@ func CanEnter(age int, hasTicket bool) bool {
 //
 // TODO: верните true при age >= 18; для меньшего, нулевого или отрицательного возраста верните false.
 func IsAdult(age int) bool {
+	if age >= 18 {
+		return true
+	}
 	return false
 }
 
@@ -22,6 +28,9 @@ func IsAdult(age int) bool {
 //
 // TODO: в рамках задания верните true при age >= 18, иначе false.
 func CanBuyAlcohol(age int) bool {
+	if age >= 18 {
+		return true
+	}
 	return false
 }
 
@@ -29,6 +38,9 @@ func CanBuyAlcohol(age int) bool {
 //
 // TODO: верните true, если isWeekend или isHoliday равен true. Если оба флага false, верните false.
 func CanRest(isWeekend, isHoliday bool) bool {
+	if isWeekend || isHoliday {
+		return true
+	}
 	return false
 }
 
@@ -36,6 +48,9 @@ func CanRest(isWeekend, isHoliday bool) bool {
 //
 // TODO: верните true для строк "monday", "tuesday", "wednesday", "thursday" и "friday". Для выходных и неизвестных значений верните false.
 func IsWorkingDay(day string) bool {
+	if day == "monday" || day == "tuesday" || day == "wednesday" || day == "thursday" || day == "friday" {
+		return true
+	}
 	return false
 }
 
@@ -43,6 +58,9 @@ func IsWorkingDay(day string) bool {
 //
 // TODO: верните true, если isAdmin или isOwner равен true; без обоих прав верните false.
 func HasAccess(isAdmin, isOwner bool) bool {
+	if isOwner || isAdmin {
+		return true
+	}
 	return false
 }
 
@@ -50,6 +68,9 @@ func HasAccess(isAdmin, isOwner bool) bool {
 //
 // TODO: верните true для VIP-пользователя либо при total >= 5000. В остальных случаях верните false.
 func CanApplyDiscount(isVIP bool, total int) bool {
+	if isVIP || total >= 5000 {
+		return true
+	}
 	return false
 }
 
@@ -57,6 +78,9 @@ func CanApplyDiscount(isVIP bool, total int) bool {
 //
 // TODO: верните true, только если emailVerified и notificationsEnabled одновременно равны true.
 func ShouldNotify(emailVerified, notificationsEnabled bool) bool {
+	if emailVerified && notificationsEnabled {
+		return true
+	}
 	return false
 }
 
@@ -64,6 +88,9 @@ func ShouldNotify(emailVerified, notificationsEnabled bool) bool {
 //
 // TODO: верните true для score от 0 до 100 включительно; вне диапазона верните false.
 func IsValidScore(score int) bool {
+	if score >= 0 && score <= 100 {
+		return true
+	}
 	return false
 }
 
@@ -71,6 +98,9 @@ func IsValidScore(score int) bool {
 //
 // TODO: верните true, если value находится между min и max включительно; иначе false.
 func IsInRange(value, min, max int) bool {
+	if value >= min && value <= max {
+		return true
+	}
 	return false
 }
 
@@ -78,6 +108,9 @@ func IsInRange(value, min, max int) bool {
 //
 // TODO: верните true, если год кратен 400 либо кратен 4, но не кратен 100. Для остальных лет верните false.
 func IsLeapYear(year int) bool {
+	if year%400 == 0 || (year%4 == 0 && year%100 != 0) {
+		return true
+	}
 	return false
 }
 
@@ -85,6 +118,9 @@ func IsLeapYear(year int) bool {
 //
 // TODO: верните true, если аккаунт не заблокирован, amount > 0 и balance >= amount. В остальных случаях верните false.
 func CanWithdraw(balance, amount int, blocked bool) bool {
+	if balance >= amount && !blocked && amount > 0 {
+		return true
+	}
 	return false
 }
 
@@ -92,6 +128,9 @@ func CanWithdraw(balance, amount int, blocked bool) bool {
 //
 // TODO: верните true, только если passwordOK и otpOK одновременно равны true.
 func LoginAllowed(passwordOK, otpOK bool) bool {
+	if passwordOK && otpOK {
+		return true
+	}
 	return false
 }
 
@@ -99,6 +138,9 @@ func LoginAllowed(passwordOK, otpOK bool) bool {
 //
 // TODO: верните true только для строки длиной 0. Пробел, перевод строки и любой другой символ означают непустую строку.
 func IsEmpty(text string) bool {
+	if len(text) == 0 {
+		return true
+	}
 	return false
 }
 
@@ -106,5 +148,8 @@ func IsEmpty(text string) bool {
 //
 // TODO: верните логическое значение, противоположное flag.
 func Not(flag bool) bool {
+	if !flag {
+		return true
+	}
 	return false
 }
